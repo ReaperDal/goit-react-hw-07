@@ -1,0 +1,7 @@
+.link {
+  color: white;
+  font-weight: bold;
+}
+.active {
+  color: rgb(25, 85, 112);
+}
