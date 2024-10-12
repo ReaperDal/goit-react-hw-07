@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { fetchMoviesDay } from "../../services/api";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const MovieList = () => {
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    const getMoviesDay = async () => {
-      const data = await fetchMoviesDay();
-      setMovies(data);
-    };
-    getMoviesDay();
-    console.log(data);
-  }, []);
-  return <div></div>;
+const MovieList = ({movies}) => {
+ 
+  
+  
+  return  <div>
+     
+      <ul>
+        {movies?.map(movie => (
+          <li key={movie.id}>
+            <Link to={movie.id.toString()}>
+              <p>
+               {movie.original_title}
+              </p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
 };
 
 export default MovieList;
