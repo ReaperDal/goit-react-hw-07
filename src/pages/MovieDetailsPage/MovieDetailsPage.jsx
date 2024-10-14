@@ -1,31 +1,83 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { fetchMovieById } from "../../services/api"
+import { Suspense, useEffect, useRef, useState } from "react";
+import {
+  NavLink,
+  useParams,
+  Outlet,
+  Link,
+  useLocation,
+} from "react-router-dom";
+import { fetchMovieById } from "../../services/api";
+import clsx from "clsx";
+import s from "./MovieDetailsPage.module.css";
+import Loader from "../../components/Loader/Loader";
 
 const MovieDetailsPage = () => {
-    const { movieId } = useParams();
-    console.log(movieId);
-    const [movie, setMovie] = useState(null);
-    useEffect(() => {
-        const getMovie = async () => {
-            const data = await fetchMovieById(movieId)
-            setMovie(data)
-        }
-        getMovie()
-    }, [movieId])
+  const buildLinkClass = ({ isActive }) => {
+    return clsx(s.link, isActive && s.active);
+  };
+  const { movieId } = useParams();
+  const [movie, setMovie] = useState(null);
+  const [isLoader, setIsLoader] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const location = useLocation();
+  const goBackRef = useRef(location.state);
+  useEffect(() => {
+    const getMovie = async () => {
+      try {
+        setIsError(false);
+        setIsLoader(true);
+        const data = await fetchMovieById(movieId);
+        setMovie(data);
+      } catch {
+        setIsError(true);
+      } finally {
+        setIsLoader(false);
+      }
+    };
+    getMovie();
+  }, [movieId]);
 
-    if (!movie) return <h2>Loading...</h2>
-    
+  if (!movie) return <Loader />;
+
   return (
-      <div>
-           <img
-        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-        alt={movie.original_title}
-      />
-          <h2>{movie.original_title}</h2>
-      <p>{movie.overview}</p>
-     </div>
-  )
-}
+    <div>
+      {isLoader && <Loader />}
+      {isError && <p>Error 404</p>}
+      <div className={s.containerBox}>
+        <Link to={goBackRef.current} className={s.link}>
+          Go back
+        </Link>
+        <div className={s.container}>
+          <img
+            src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+            alt={movie.original_title}
+          />
+          <div className={s.containerinfo}>
+            <h2>{movie.original_title}</h2>
+            <p>{movie.overview}</p>
+            <ul>
+              <p>Genres</p>
+              {movie.genres?.map((genre) => (
+                <li key={genre.id}>{genre.name}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div className={s.details}>
+        <NavLink className={buildLinkClass} to="cast">
+          Cast
+        </NavLink>
+        <NavLink className={buildLinkClass} to="reviews">
+          Reviews
+        </NavLink>
+      </div>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </div>
+  );
+};
 
-export default MovieDetailsPage
+export default MovieDetailsPage;

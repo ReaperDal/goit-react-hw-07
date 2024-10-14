@@ -1,0 +1,28 @@
+.link {
+  color: rgb(115, 184, 184);
+  font-weight: bold;
+}
+
+.active {
+  color: rgb(25, 85, 112);
+}
+.details {
+  display: flex;
+
+  padding: 20px;
+  color: white;
+  font-weight: 700;
+
+  width: 100%;
+  gap: 25px;
+}
+.container {
+  display: flex;
+}
+.containerinfo {
+  flex-direction: column;
+}
+.containerBox {
+  flex-direction: column;
+  margin-bottom: 20px;
+}
