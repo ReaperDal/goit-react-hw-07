@@ -1,28 +1,58 @@
 .link {
-  color: rgb(115, 184, 184);
+  color: #a3cde1;
+
   font-weight: bold;
+  text-decoration: none;
+
+  transition: color 0.3s;
+
+  &:hover {
+    color: #86b0c8;
+
+  }
 }
 
 .active {
-  color: rgb(25, 85, 112);
+  color: #1a4e62;
+
 }
+
 .details {
   display: flex;
-
   padding: 20px;
-  color: white;
+  color: #e0e0e0;
+
   font-weight: 700;
+  background-color: #2c2c2c;
+
+  border-radius: 10px;
 
   width: 100%;
   gap: 25px;
 }
+
 .container {
   display: flex;
+  background-color: #1f1f1f;
+
+  padding: 15px;
+
+  border-radius: 10px;
 }
+
 .containerinfo {
+  display: flex;
   flex-direction: column;
+  color: #d1d1d1;
+
 }
+
 .containerBox {
+  display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  background-color: #333;
+
+  padding: 10px;
+  border-radius: 8px;
 }

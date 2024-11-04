@@ -1,19 +1,13 @@
 import { Suspense, useEffect, useRef, useState } from "react";
-import {
-  NavLink,
-  useParams,
-  Outlet,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import {  NavLink,  useParams,  Outlet,  Link,  useLocation} from "react-router-dom";
 import { fetchMovieById } from "../../services/api";
 import clsx from "clsx";
-import s from "./MovieDetailsPage.module.css";
+import styles from "./MovieDetailsPage.module.css";
 import Loader from "../../components/Loader/Loader";
 
 const MovieDetailsPage = () => {
   const buildLinkClass = ({ isActive }) => {
-    return clsx(s.link, isActive && s.active);
+    return clsx(styles.link, isActive && styles.active);
   };
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -43,16 +37,16 @@ const MovieDetailsPage = () => {
     <div>
       {isLoader && <Loader />}
       {isError && <p>Error 404</p>}
-      <div className={s.containerBox}>
-        <Link to={goBackRef.current} className={s.link}>
+      <div className={styles.containerBox}>
+        <Link to={goBackRef.current} className={styles.link}>
           Go back
         </Link>
-        <div className={s.container}>
+        <div className={styles.container}>
           <img
             src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
             alt={movie.original_title}
           />
-          <div className={s.containerinfo}>
+          <div className={styles.containerinfo}>
             <h2>{movie.original_title}</h2>
             <p>{movie.overview}</p>
             <ul>
@@ -65,7 +59,7 @@ const MovieDetailsPage = () => {
         </div>
       </div>
       <hr />
-      <div className={s.details}>
+      <div className={styles.details}>
         <NavLink className={buildLinkClass} to="cast">
           Cast
         </NavLink>

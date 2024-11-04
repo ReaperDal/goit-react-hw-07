@@ -1,17 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { fetchMoviesByQuery } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
-import s from "./MoviesPage.module.css";
+import styles from "./MoviesPage.module.css";
 import { useSearchParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 
 const MoviesPage = () => {
+
+  const query = searchParams.get("query") ?? "";
+  const inputRef = useRef(null);
   const [movies, setMovies] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
   const [isError, setIsError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("query") ?? "";
-  const inputRef = useRef(null);
+
 
   const getMovies = async (query) => {
     try {
@@ -43,14 +45,14 @@ const MoviesPage = () => {
 
   return (
     <div>
-      <form className={s.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input
-          className={s.input}
+          className={styles.input}
           type="text"
           ref={inputRef}
           placeholder="Search for a movie..."
         />
-        <button className={s.formBtn} type="submit">
+        <button className={styles.formBtn} type="submit">
           Search
         </button>
       </form>

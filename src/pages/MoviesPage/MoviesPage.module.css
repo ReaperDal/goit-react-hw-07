@@ -5,7 +5,9 @@
     border-radius: 5px;
     justify-content: center;
     margin-bottom: 15px;
-   
+    background-color: #2b2b2b;
+
+    padding: 10px;
 }
 
 .formBtn {
@@ -14,12 +16,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
-    background-color: rgb(115, 184, 184);
+    color: #ffffff;
+    background-color: #4a4a4a;
+
     height: 35px;
+    transition: background-color 0.3s;
 
     &:hover {
-        background-color: #6a6b6d;
+        background-color: #3a3a3a;
+
     }
 }
 
@@ -27,10 +32,18 @@
     width: 350px;
     height: 35px;
     border: none;
-    box-shadow: 0px 4px 24px 2px rgba(66, 68, 90, 1);
+    background-color: #3b3b3b;
+
+    color: #ffffff;
+
+    box-shadow: 0px 4px 24px 2px rgba(0, 0, 0, 0.7);
+
     border-radius: 8px;
+    padding: 0 10px;
 
     &:focus {
         outline: none;
+        box-shadow: 0px 0px 8px 2px #5a9bd8;
+
     }
 }

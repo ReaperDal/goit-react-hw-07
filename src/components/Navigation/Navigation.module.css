@@ -1,7 +1,18 @@
 .link {
-  color: white;
+  color: #ffffff;
+
   font-weight: bold;
+  text-decoration: none;
+
+  transition: color 0.3s;
+
+  &:hover {
+    color: #b0c4de;
+
+  }
 }
+
 .active {
-  color: rgb(25, 85, 112);
+  color: #195570;
+
 }

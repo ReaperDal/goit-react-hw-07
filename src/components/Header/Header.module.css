@@ -1,11 +1,14 @@
 .wrapper {
   display: flex;
-  /* justify-content: ; */
   padding: 20px;
-  color: white;
+  color: #e0e0e0;
+
   font-weight: 700;
-  background-color: rgb(115, 184, 184);
+  background-color: #2c3e3e;
+
   width: 100%;
   gap: 25px;
   margin-bottom: 15px;
+  border-radius: 10px;
+
 }
